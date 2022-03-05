@@ -1,45 +1,49 @@
 <div class="container">
-    <h1>Book a Flight</h1>
+    <h1 class="text-center">Book a Flight</h1>
     <form [formGroup]="flightForm">
         <div class="form-group mt-3">
             <label>Full Name : </label>
             <input type="text" class="form-control" formControlName="fullName" placeholder="Enter your full-name" />
         </div>
-        <div class="form-group mt-3">
-            <label>From : </label>
-            <select class="custom-select mb-2" formControlName="from">
-        <option value="" selected>From</option>
-        <option value="Russia">area 11</option>
-        <option value="Thailand">utopia</option>
-        <option value="England">thailand</option>
-      </select>
+        <div class="row">
+            <div class="form-group mt-3 col">
+                <label>From : </label>
+                <select class="form-select mb-2" formControlName="from">
+                  <option value="" selected>From</option>
+                  <option value="Russia">France</option>
+                  <option value="Thailand">India</option>
+                  <option value="England">Japan</option>
+                </select>
+            </div>
+            <div class="form-group mt-3 col">
+                <label>To : </label>
+                <select class="form-select mb-2" formControlName="to">
+                  <option value="" selected>To</option>
+                  <option value="Ukraine">Thailand</option>
+                  <option value="Japan">UK</option>
+                  <option value="Korea">USA</option>
+                </select>
+            </div>
         </div>
-        <div class="form-group mt-3">
-            <label>To : </label>
-            <select class="custom-select mb-2" formControlName="to">
-        <option value="" selected>To</option>
-        <option value="Ukraine">thailand</option>
-        <option value="Japan">utopia</option>
-        <option value="Korea">area 11</option>
-      </select>
-        </div>
-        <div class="flex-date">
-            <div>
+        <div class="flex-date row">
+            <div class="col">
                 <label>Departure : </label> <br />
                 <mat-form-field appearance="fill">
                     <mat-label>Choose a date</mat-label>
-                    <input matInput [matDatepicker]="departurePicker" formControlName="departure" [min]="minDate" />
+                    <input matInput [matDatepicker]="departurePicker" formControlName="departure" [min]="minDate" [disabled]="flightForm.value.departure" />
+                    <!--[disabled]="flightForm.value.departure"-->
                     <mat-datepicker-toggle matSuffix [for]="departurePicker"></mat-datepicker-toggle>
-                    <mat-datepicker #departurePicker></mat-datepicker>
+                    <mat-datepicker #departurePicker disabled="false"></mat-datepicker>
                 </mat-form-field>
             </div>
-            <div>
+            <div class="col">
                 <label>Arrival : </label> <br />
                 <mat-form-field appearance="fill">
                     <mat-label>Choose a date</mat-label>
-                    <input matInput [matDatepicker]="arrivalPicker" formControlName="arrival" [min]="flightForm.value.departure" />
+                    <input matInput [matDatepicker]="arrivalPicker" formControlName="arrival" [min]="flightForm.value.departure" [disabled]="flightForm.value.arrival" />
+                    <!--[disabled]="flightForm.value.arrival"-->
                     <mat-datepicker-toggle matSuffix [for]="arrivalPicker"></mat-datepicker-toggle>
-                    <mat-datepicker #arrivalPicker></mat-datepicker>
+                    <mat-datepicker #arrivalPicker disabled="false"></mat-datepicker>
                 </mat-form-field>
             </div>
         </div>
@@ -53,16 +57,24 @@
             <label class="form-check-label">Return</label>
         </div>
         <div class="form-group mt-3">
-            <label>Adults</label>
-            <input type="number" class="form-control" formControlName="adults" placeholder="Enter a number" />
-            <label>Children</label>
-            <input type="number" class="form-control" formControlName="children" placeholder="Enter a number" />
-            <label>Infants</label>
-            <input type="number" class="form-control" formControlName="infants" placeholder="Enter a number" />
-        </div>
+            <div class="row">
+                <div class="col">
+                    <label>Adults</label>
+                    <input type="number" class="form-control" formControlName="adults" placeholder="Enter a number" min="0" />
+                </div>
+                <div class="col">
+                    <label>Children</label>
+                    <input type="number" class="form-control" formControlName="children" placeholder="Enter a number" min="0" />
+                </div>
+                <div class="col">
+                    <label>Infants</label>
+                    <input type="number" class="form-control" formControlName="infants" placeholder="Enter a number" min="0" />
+                </div>
+            </div>
+        </div><br>
         <button class="btn-lg btn-block btn-primary" type="submit" [disabled]="flightForm.invalid" (click)="onSubmit(flightForm.value)">
       Submit
-    </button>
+    </button><br>
     </form>
 
     <table class="table">

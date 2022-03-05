@@ -5,7 +5,7 @@ export class Flight {
     public to: string,
     public type: string,
     public adults: number,
-    public departure: Date,
+    public departure: Date ,
     public children: number,
     public infants: number,
     public arrival: Date,
