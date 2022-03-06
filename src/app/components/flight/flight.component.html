@@ -2,32 +2,32 @@
     <h1 class="text-center">Book a Flight</h1>
     <form [formGroup]="flightForm">
         <div class="form-group mt-3">
-            <label>Full Name : </label>
+            <label>Full Name : </label><span style="color: red" *ngIf="flightForm.get('fullName')?.errors?.['required']">*</span>
             <input type="text" class="form-control" formControlName="fullName" placeholder="Enter your full-name" />
         </div>
         <div class="row">
             <div class="form-group mt-3 col">
-                <label>From : </label>
+                <label>From : </label><span style="color: red" *ngIf="flightForm.get('from')?.errors?.['required']">*</span>
                 <select class="form-select mb-2" formControlName="from">
                   <option value="" selected>From</option>
-                  <option value="Russia">France</option>
-                  <option value="Thailand">India</option>
-                  <option value="England">Japan</option>
+                  <option value="France">France</option>
+                  <option value="India">India</option>
+                  <option value="Japan">Japan</option>
                 </select>
             </div>
             <div class="form-group mt-3 col">
-                <label>To : </label>
+                <label>To : </label><span style="color: red" *ngIf="flightForm.get('to')?.errors?.['required']">*</span>
                 <select class="form-select mb-2" formControlName="to">
                   <option value="" selected>To</option>
-                  <option value="Ukraine">Thailand</option>
-                  <option value="Japan">UK</option>
-                  <option value="Korea">USA</option>
+                  <option value="Thailand">Thailand</option>
+                  <option value="UK">UK</option>
+                  <option value="USA">USA</option>
                 </select>
             </div>
         </div>
         <div class="flex-date row">
             <div class="col">
-                <label>Departure : </label> <br />
+                <label>Departure : </label> <span style="color: red" *ngIf="flightForm.get('departure')?.errors?.['required']">*</span><br />
                 <mat-form-field appearance="fill">
                     <mat-label>Choose a date</mat-label>
                     <input matInput [matDatepicker]="departurePicker" formControlName="departure" [min]="minDate" [disabled]="flightForm.value.departure" />
@@ -37,7 +37,7 @@
                 </mat-form-field>
             </div>
             <div class="col">
-                <label>Arrival : </label> <br />
+                <label>Arrival : </label><span style="color: red" *ngIf="flightForm.get('arrival')?.errors?.['required']">*</span> <br />
                 <mat-form-field appearance="fill">
                     <mat-label>Choose a date</mat-label>
                     <input matInput [matDatepicker]="arrivalPicker" formControlName="arrival" [min]="flightForm.value.departure" [disabled]="flightForm.value.arrival" />
@@ -47,7 +47,7 @@
                 </mat-form-field>
             </div>
         </div>
-        <label>Trip Type</label>
+        <label>Trip Type</label><span style="color: red" *ngIf="flightForm.get('type')?.errors?.['required']">*</span>
         <div class="form-check">
             <input class="form-check-input" type="radio" value="One-way" formControlName="type" />
             <label class="form-check-label">One way</label>
@@ -59,15 +59,16 @@
         <div class="form-group mt-3">
             <div class="row">
                 <div class="col">
-                    <label>Adults</label>
+                    <label>Adults</label><span style="color: red" *ngIf="flightForm.get('adults')?.errors?.['required']">*</span>
+
                     <input type="number" class="form-control" formControlName="adults" placeholder="Enter a number" min="0" />
                 </div>
                 <div class="col">
-                    <label>Children</label>
+                    <label>Children</label><span style="color: red" *ngIf="flightForm.get('children')?.errors?.['required']">*</span>
                     <input type="number" class="form-control" formControlName="children" placeholder="Enter a number" min="0" />
                 </div>
                 <div class="col">
-                    <label>Infants</label>
+                    <label>Infants</label><span style="color: red" *ngIf="flightForm.get('infants')?.errors?.['required']">*</span>
                     <input type="number" class="form-control" formControlName="infants" placeholder="Enter a number" min="0" />
                 </div>
             </div>
